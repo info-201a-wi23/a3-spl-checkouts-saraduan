@@ -48,7 +48,7 @@ checkouts_per_months <- grishaverse_df %>%
   arrange(desc(total_checkouts_per_month))
 
 # Make interactive bar chart
-chart2_plot <- ggplot(data = checkouts_per_months, mapping = aes(x = reorder(CheckoutMonth, +CheckoutMonth), 
+chart1_plot <- ggplot(data = checkouts_per_months, mapping = aes(x = reorder(CheckoutMonth, +CheckoutMonth), 
                                                                  y = total_checkouts_per_month,
                                                                  fill = Title)) +
   scale_fill_manual(values = c("#240925", "#3E1138", "#56194f", "#802b5b", "#aa405b", "#d46059", "#fea775"), 
@@ -63,4 +63,4 @@ chart2_plot <- ggplot(data = checkouts_per_months, mapping = aes(x = reorder(Che
   
   geom_col()
 
-ggplotly(chart2_plot, toltip = "text")
+ggplotly(chart1_plot, toltip = "text")
