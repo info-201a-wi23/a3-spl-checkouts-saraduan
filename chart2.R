@@ -1,3 +1,5 @@
+
+
 # Load libraries
 library(dplyr)
 library(tidyverse)
@@ -10,7 +12,7 @@ library("plotly")
 library("scales")
 
 # Load dataset
-library_df <- read.csv("2017-2023-10-Checkouts-SPL-Data.csv")
+library_df <- read.csv("./2017-2023-10-Checkouts-SPL-Data.csv")
 
 # Create dataframe for author
 leigh_bardugo_all_df <- library_df %>% 
@@ -49,15 +51,43 @@ grishaverse_checkouts_per_year <- grishaverse_df %>%
 all_checkouts <- grishaverse_checkouts_per_year %>% 
   summarize(total = sum(total_checkouts_per_year))
 
-# Create pie chart
-piechart <- ggplot(all_checkouts, aes(x = "", y = total, fill = Title)) +
-  geom_col() +
-  scale_fill_manual(values = c("#240925", "#3E1138", "#56194f", "#802b5b", "#aa405b", "#d46059", "#fea775")) +
-  labs(title = "Total Grishaverse Checkouts per Book from 2017-2022", fill = "Title") +
-  geom_text(aes(label = total),
-            color = "white",
-            position = position_stack(vjust = 0.5)) +
-  coord_polar(theta = "y") +
-  theme_void() 
+# Find total checkouts for Dregs series
+dregs_checkouts_per_year <- grishaverse_checkouts_per_year %>% 
+  filter(Title %in% c("Six of Crows", "Crooked Kingdom")) %>% 
+  group_by(CheckoutYear) %>% 
+  summarize(total = sum(total_checkouts_per_year))
 
-piechart
+dregs <- "Dregs Series"
+dregs_checkouts_per_year$Title <- dregs
+
+# Find total checkouts for Grisha trilogy
+grisha_checkouts_per_year <- grishaverse_checkouts_per_year %>% 
+  filter(Title %in% c("Shadow and Bone", "Siege and Storm", "Ruin and Rising")) %>% 
+  group_by(CheckoutYear) %>% 
+  summarize(total = sum(total_checkouts_per_year))
+
+grisha <- "Grisha Trilogy"
+grisha_checkouts_per_year$Title <- grisha
+
+# Find total checkouts for King of Scars duology
+king_of_scars_checkouts_per_year <- grishaverse_checkouts_per_year %>% 
+  filter(Title %in% c("King of Scars", "Rule of Wolves")) %>% 
+  group_by(CheckoutYear) %>% 
+  summarize(total = sum(total_checkouts_per_year))
+
+king_of_scars <- "King of Scars Duology"
+king_of_scars_checkouts_per_year$Title <- king_of_scars
+
+# Combine dataframes
+all_series <- rbind(dregs_checkouts_per_year, grisha_checkouts_per_year)
+all_series <- rbind(all_series, king_of_scars_checkouts_per_year)
+
+# Make line plot
+ggplot(data = all_series) +
+  geom_line(mapping = aes(x = CheckoutYear, y = total, color = Title, lwd = 2)) +
+  scale_color_manual(values = c("#260b2c", "#aa405b", "#fea775")) +
+  guides(lwd = FALSE) +
+  labs(title = "Total Checkouts for each Grishaverse Series", x = "Year",
+       y = "Number of Checkouts", color = "Series Title") +
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(color = "black"))
