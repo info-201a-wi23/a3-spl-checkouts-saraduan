@@ -7,7 +7,7 @@ library("ggplot2")
 library("dplyr")
 library("scales")
 
-# load 2022-2023 checkouts dataset
+# load 2017-2023 checkouts dataset
 checkouts <- read.csv("/Users/sarajduan/Desktop/2017-2023-10-Checkouts-SPL-Data.csv",stringsAsFactors = FALSE)
 
 
