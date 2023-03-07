@@ -1,5 +1,6 @@
 # A3: chart 3
 # Sara Duan
+# INFO 201 AB
 
 library("tidyverse")
 library("ggplot2")
