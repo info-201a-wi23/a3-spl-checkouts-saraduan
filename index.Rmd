@@ -1,0 +1,87 @@
+---
+title: "A3: SPL Library Checkouts"
+author: "Sara Duan"
+date: "2023-03-07"
+output: html_document
+---
+
+```{r echo = FALSE, warning = FALSE, message = FALSE}
+library("tidyverse")
+library("ggplot2")
+library("dplyr")
+library("scales")
+library("knitr")
+source('chart1.R')
+source('chart2.R')
+source('chart3.R')
+```
+
+### Introduction
+
+With the digitization of libraries over the years, this assignment uncovers interesting trends, specifically taken from the Seattle Public Library's data. Two datasets were used on this assignment.
+
+The first dataset includes information about book checkouts from the Seattle Public Library, dating from 2017-2023. It only contains items that were checked out at least 10 times a month. It includes categories such as a book’s checkout type, material, checkout year and month, number of checkouts, etc. I have analyzed trends in regards to the physical vs. digital checkouts over the years, as well as the distribution of genres that the checkouts include. 
+
+The second dataset includes all items checked out in 2022-2023 from Seattle Public Library. I am interested in the material type of books that are checked out in this period. I have analyzed trends in regards to the different types of materials each checkout has been over the years. 
+
+
+### Summary
+
+The average number of checkouts of for 2022 is 3.3, and the average number of checkouts for 2023 is 3.5. The month with the most checkouts for the book “Bad at Love” is October. The month with the most checkouts for ebooks is September. There are a total of 2757014 publishers. The book that was checked out the most times at 2022 Jan was Headphones / Seattle Public Library.
+
+
+### The Dataset
+
+**Who collected/published the data?**
+
+The data was collected and published by the Seattle Public Library.
+
+**What are the parameters of the data (dates, number of checkouts, kinds of books, etc.)?**
+
+The dataset includes information on checkouts from the Seattle Public Library system, including the title of the borrowed item, the author, the publication year, the publisher, the ISBN, and the number of checkouts by item, the usage type, checkout type, material type, checkout year and month ranging from from 2017 to 2023. This dataset has 12 columns and 816453 rows.
+
+**How was the data collected or generated?**
+
+The data was likely collected electronically through the library’s checkout system and stored in a database. It is unclear if the data includes all checkouts or a sample.
+
+**Why was the data collected?**
+
+The data was likely collected to track the popularity of different titles and evaluate the trends of book checkouts throughout the Seattle Public Library system.
+
+**What, if any, ethical questions do you need to consider when working with this data?**
+
+Ethical questions could include ensuring the privacy of borrower data and avoiding biased analyses or interpretations. It is also important to consider whether the data includes sensitive information such as borrowers’ names or addresses and take steps to protect that information.
+
+**What are possible limitations or problems with this data?**
+
+Possible limitations or problems could include incomplete or inaccurate data, lack of context, and biases caused by social and political trends. The dataset also does not include information on the specific locations that the books were taken after they were checked out where items were checked out, which could limit the ability to draw conclusions about borrowing patterns in specific locations.
+
+
+### First Trends Over Time Chart
+
+```{r chart1, echo = FALSE}
+chart1
+```
+
+This first chart showcases four different line plots. Each of these lines represents a material type that has been checked out over the 12 months of 2022 to 2023. The material types chosen are five main types: hardcover books, electronic books, audio books, sound discs, and video discs. This chart was included as it is an important measure of what types of checkouts consumers make over time. One can see that there are much more hardcover and electronic books checked out as opposed to the other material types. Interestingly though, the number of checkouts for each material per month has not increased very much over time, indicating consumer interest has not really improved. The total number of checkouts per month for sound and video discs has stayed relatively stagnant throughout the whole year. The total number of checkouts per month for electronic and hardcover has fluctuated more, but has not increased very much between January of 2022 and January of 2023. The total number of checkouts per month for audio books is the only trend line that has increased (about 35K between January of 2022 and January of 2023). 
+
+
+### Second Trends Over Time Chart
+
+```{r chart2, echo = FALSE}
+chart2
+```
+
+This second chart is a dual bar graph that illustrates the total number of digital versus physical library checkouts. It was included as it gives context on the trends of physical vs digital book checkouts throughout the years of 2017 to 2023. From 2017 to 2020, it seems that digital books saw an increase in checkouts while physical books saw a decrease. Physical book checkouts had a significant drop in checkouts in 2020, whereas digital book checkouts saw an increase (most likely due to the pandemic). Since 2020, both mediums saw a steady rise. 2023 does not have accurate data in this case as the year has not completed. 
+
+
+### Third Chart of Choice
+
+```{r chart3, echo = FALSE}
+chart3
+```
+
+This third chart compares six common genres and their total checkouts from the years 2017 to 2023. These six genres: drama, fantasy, mystery, romance, science, and thriller appear frequently in the entire dataset. Singular checkouts (books, for example) also sometimes have overlapping genres. For example, a Harry Potter novel is of both the fantasy and mystery genres. From this chart, we see that drama related books are most checked out. However, this may be due to the distribution of genres of books/media within the library's collection, as opposed to the interest of the consumers. For example, the trend displayed in drama's bar could be explained by the Seattle Public Library simply having more drama-related books, and not because consumers like to check out drama books more. But again, this could also be the reverse; it seems more analysis is needed!
+
+
+
